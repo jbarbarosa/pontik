@@ -1,5 +1,5 @@
 class ClocksController < ApplicationController
-  before_action :set_clock, only: %i[ show edit update destroy ]
+  before_action :set_clock, only: %i[show edit update destroy]
 
   # GET /clocks or /clocks.json
   def index
@@ -7,8 +7,7 @@ class ClocksController < ApplicationController
   end
 
   # GET /clocks/1 or /clocks/1.json
-  def show
-  end
+  def show; end
 
   # GET /clocks/new
   def new
@@ -16,16 +15,15 @@ class ClocksController < ApplicationController
   end
 
   # GET /clocks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /clocks or /clocks.json
   def create
-    @clock = Clock.new(clock_params)
+    @clock = Clock.new(check_in_params)
 
     respond_to do |format|
       if @clock.save
-        format.html { redirect_to clock_url(@clock), notice: "Clock was successfully created." }
+        format.html { redirect_to clock_url(@clock), notice: 'You checked in' }
         format.json { render :show, status: :created, location: @clock }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class ClocksController < ApplicationController
   def update
     respond_to do |format|
       if @clock.update(clock_params)
-        format.html { redirect_to clock_url(@clock), notice: "Clock was successfully updated." }
+        format.html { redirect_to clock_url(@clock), notice: 'Clock was successfully updated.' }
         format.json { render :show, status: :ok, location: @clock }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,24 @@ class ClocksController < ApplicationController
     @clock.destroy
 
     respond_to do |format|
-      format.html { redirect_to clocks_url, notice: "Clock was successfully destroyed." }
+      format.html { redirect_to clocks_url, notice: 'Clock was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_clock
-      @clock = Clock.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def clock_params
-      params.require(:clock).permit(:time, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_clock
+    @clock = Clock.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def clock_params
+    params.require(:clock).permit(:time).merge(user: current_user)
+  end
+
+  def check_in_params
+    params.permit(:user, :time).merge(user: current_user, time: Time.zone.now)
+  end
 end
