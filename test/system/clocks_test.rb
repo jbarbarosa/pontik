@@ -13,13 +13,23 @@ class ClocksTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Clocks'
   end
 
-  test 'should create clock' do
+  test 'should create clock in' do
+    Clock.create user: users(:one), time: Time.zone.now
     visit clocks_url
     click_on 'New clock'
 
     click_on 'Check In'
 
-    assert_text 'You checked in'
+    assert_text 'Check In successful'
+  end
+
+  test 'should create clock out' do
+    visit clocks_url
+    click_on 'New clock'
+
+    click_on 'Check Out'
+
+    assert_text 'Check Out successful'
   end
 
   test 'should update Clock' do

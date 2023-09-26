@@ -1,5 +1,6 @@
 class ClocksController < ApplicationController
   before_action :set_clock, only: %i[show edit update destroy]
+  before_action :set_action, only: %i[new create]
 
   # GET /clocks or /clocks.json
   def index
@@ -23,7 +24,7 @@ class ClocksController < ApplicationController
 
     respond_to do |format|
       if @clock.save
-        format.html { redirect_to clock_url(@clock), notice: 'You checked in' }
+        format.html { redirect_to clock_url(@clock), notice: "#{@action} successful" }
         format.json { render :show, status: :created, location: @clock }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -69,5 +70,9 @@ class ClocksController < ApplicationController
 
   def check_in_params
     params.permit(:user, :time).merge(user: current_user, time: Time.zone.now)
+  end
+
+  def set_action
+    @action = Clock.where(user_id: current_user.id).count.even? ? 'Check In' : 'Check Out'
   end
 end
