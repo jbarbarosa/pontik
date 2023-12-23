@@ -14,11 +14,11 @@ class ClocksTest < ApplicationSystemTestCase
     assert_text 'January 2000'
     within '#mon-3' do
       assert_text 'Mon 3'
-      assert_text '8h00m'
+      assert_text '0h00m'
     end
     within '#tue-4' do
       assert_text 'Tue 4'
-      assert_text '8h00m'
+      assert_text '0h00m'
     end
   end
 

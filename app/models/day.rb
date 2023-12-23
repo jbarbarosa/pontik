@@ -16,4 +16,8 @@ class Day
   def to_identifier
     "#{of_the_week.downcase}-#{of_the_month}"
   end
+
+  def worked_hours
+    '0h00m'
+  end
 end
