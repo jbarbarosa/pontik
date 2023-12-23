@@ -4,6 +4,7 @@ class ClocksController < ApplicationController
 
   # GET /clocks or /clocks.json
   def index
+    set_calendar
     @clocks = Clock.all
   end
 
@@ -61,6 +62,10 @@ class ClocksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_clock
     @clock = Clock.find(params[:id])
+  end
+
+  def set_calendar
+    @calendar = Calendar.new Time.zone.today
   end
 
   # Only allow a list of trusted parameters through.

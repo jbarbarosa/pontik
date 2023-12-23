@@ -11,7 +11,7 @@ class ClocksTest < ApplicationSystemTestCase
   test 'should display a calendar with daily worked hours' do
     travel_to Time.zone.local(2000, 1, 1, 1, 1, 1)
     visit clocks_url
-    assert_text 'January, 2000'
+    assert_text 'January 2000'
     within '#mon-3' do
       assert_text 'Mon 3'
       assert_text '8h00m'
