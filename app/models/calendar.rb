@@ -6,7 +6,7 @@ class Calendar
   end
 
   def days(&block)
-    days_of_the_month.each(&block)
+    days_of_the_month.each_with_index(&block)
   end
 
   def full_date

@@ -9,10 +9,10 @@
   </div>
 
   <div class="grid grid-cols-7 gap-2">
-  <% @calendar.days do |day| %>
+  <% @calendar.days do |day, i| %>
     <div id="<%= day.to_identifier %>" class="rounded bg-blue-600">
       <p><%= day.of_the_week %> <%= day.of_the_month %></p>
-      <p><%= day.worked_hours current_user %></p>
+      <p><%= day.worked_hours @clock_in_times[i+1] %></p>
     </div>
   <% end %>
   </div>
