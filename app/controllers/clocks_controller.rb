@@ -5,12 +5,7 @@ class ClocksController < ApplicationController
   # GET /clocks or /clocks.json
   def index
     set_calendar
-    @clock_in_times = Clock
-                      .where(user: current_user, time: Time.zone.now.beginning_of_month..)
-                      .pluck(:time)
-                      .group_by(&:to_date)
-                      .transform_keys(&:to_s)
-                      .transform_keys { |key| Date.parse(key).day.to_i }
+    @clock_in_times = Clock.by_days_from current_user, Time.zone.now.beginning_of_month
     @clocks = Clock.all
   end
 
