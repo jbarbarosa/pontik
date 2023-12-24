@@ -12,7 +12,7 @@
   <% @calendar.days do |day| %>
     <div id="<%= day.to_identifier %>" class="rounded bg-blue-600">
       <p><%= day.of_the_week %> <%= day.of_the_month %></p>
-      <p><%= day.worked_hours %></p>
+      <p><%= day.worked_hours current_user %></p>
     </div>
   <% end %>
   </div>
