@@ -5,7 +5,7 @@ class ClocksController < ApplicationController
   # GET /clocks or /clocks.json
   def index
     set_calendar
-    @clock_in_times = Clock.by_days_from current_user, Time.zone.now.beginning_of_month
+    @clock_in_times = Clock.from_user_since(current_user, Time.zone.now.beginning_of_month).group_time_by_days
     @clocks = Clock.all
   end
 
