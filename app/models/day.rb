@@ -29,8 +29,16 @@ class Day
   private
 
   def worked_hours_and_minutes(times)
-    hours = (times[1] - times[0]) / 60 / 60
-    minutes = (times[1] - times[0]) % 60
-    [hours, minutes]
+    time_diff = (times.last - times.first).to_i
+
+    [hours_from(time_diff), minutes_from(time_diff)]
+  end
+
+  def hours_from(time)
+    time / 3600
+  end
+
+  def minutes_from(time)
+    (time % 3600) / 60
   end
 end
