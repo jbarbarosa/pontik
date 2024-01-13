@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class ClocksControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
@@ -8,41 +8,41 @@ class ClocksControllerTest < ActionDispatch::IntegrationTest
     @clock = clocks(:one)
   end
 
-  test 'should get index' do
+  test "should get index" do
     get clocks_url
     assert_response :success
   end
 
-  test 'should get new' do
+  test "should get new" do
     get new_clock_url
     assert_response :success
   end
 
-  test 'should create clock' do
-    assert_difference('Clock.count') do
+  test "should create clock" do
+    assert_difference("Clock.count") do
       post clocks_url
     end
 
     assert_redirected_to clock_url(Clock.last)
   end
 
-  test 'should show clock' do
+  test "should show clock" do
     get clock_url(@clock)
     assert_response :success
   end
 
-  test 'should get edit' do
+  test "should get edit" do
     get edit_clock_url(@clock)
     assert_response :success
   end
 
-  test 'should update clock' do
+  test "should update clock" do
     patch clock_url(@clock), params: { clock: { time: Time.zone.now } }
     assert_redirected_to clock_url(@clock)
   end
 
-  test 'should destroy clock' do
-    assert_difference('Clock.count', -1) do
+  test "should destroy clock" do
+    assert_difference("Clock.count", -1) do
       delete clock_url(@clock)
     end
 

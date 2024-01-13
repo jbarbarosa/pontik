@@ -1,4 +1,5 @@
-require: rubocop-rails
+# Omakase Ruby styling for Rails
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
 
-Style/Documentation:
-  Enabled: false
+# Your own specialized rules go here

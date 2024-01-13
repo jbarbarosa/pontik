@@ -18,7 +18,7 @@ class Calendar
   end
 
   def current_day_of_the_week
-    @current_date.strftime('%A')
+    @current_date.strftime("%A")
   end
 
   def current_day_of_the_month

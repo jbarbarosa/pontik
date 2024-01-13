@@ -39,7 +39,7 @@ class ClocksController < ApplicationController
   def update
     respond_to do |format|
       if @clock.update(clock_params)
-        format.html { redirect_to clock_url(@clock), notice: 'Clock was successfully updated.' }
+        format.html { redirect_to clock_url(@clock), notice: "Clock was successfully updated." }
         format.json { render :show, status: :ok, location: @clock }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class ClocksController < ApplicationController
     @clock.destroy
 
     respond_to do |format|
-      format.html { redirect_to clocks_url, notice: 'Clock was successfully destroyed.' }
+      format.html { redirect_to clocks_url, notice: "Clock was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -79,6 +79,6 @@ class ClocksController < ApplicationController
   end
 
   def set_action
-    @action = Clock.where(user_id: current_user.id).count.even? ? 'Check In' : 'Check Out'
+    @action = Clock.where(user_id: current_user.id).count.even? ? "Check In" : "Check Out"
   end
 end
